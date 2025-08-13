@@ -1,0 +1,87 @@
+<div class="form-container">
+  <!-- <mat-icon (click)="goBack()"> Go Back</mat-icon> -->
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+    <mat-card >       
+
+      <div style="margin-left: 40%;">
+      <mat-card-header>
+        <mat-card-title>Personal Information</mat-card-title>
+        <mat-card-subtitle>Please fill all required fields</mat-card-subtitle>
+      </mat-card-header>
+      </div>
+
+      <mat-card-content style="border: 0.5px solid grey; border-radius: 10px;margin-top: 15px;">
+        <div *ngFor="let field of fields" class="form-field" style="margin-left: 40px;">
+          <!-- Text input for Name-->
+          <mat-form-field *ngIf="field.type === 'text'" appearance="outline" style="margin-top: 20px">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput [formControlName]="field.key" [placeholder]="field.placeholder">
+            <mat-error *ngIf="formGroup.get(field.key)?.hasError('required')">
+              {{ field.label }} is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Textarea for Description -->
+          <mat-form-field *ngIf="field.type === 'textarea'" appearance="outline" >
+            <mat-label>{{ field.label }}</mat-label>
+            <textarea matInput [formControlName]="field.key" [placeholder]="field.placeholder" rows="4"></textarea>
+          </mat-form-field>
+
+          <!-- Select Gender -->
+          <mat-form-field *ngIf="field.type === 'select'" appearance="outline" >
+            <mat-label style="font-weight: bold;">{{ field.label }}</mat-label><br />
+            <mat-select [formControlName]="field.key">
+              <mat-option *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formGroup.get(field.key)?.hasError('required')">
+              Please select a {{ field.label.toLowerCase() }}
+            </mat-error>
+          </mat-form-field>
+
+
+          <!-- Radio buttons for Technology-->
+          <div  style="margin-top: 15px;">
+          <div *ngIf="field.type === 'radio'" class="radio-group">
+            <label style="font-weight: bold;">{{ field.label }}</label><br />
+            <div style="margin-top: 15px;">
+            <mat-radio-group [formControlName]="field.key">
+              <mat-radio-button *ngFor="let option of field.options" [value]="option" class="radio-button">
+                {{ option }}
+              </mat-radio-button>
+            </mat-radio-group>
+            </div>
+          </div>
+          </div>
+          <!-- Checkboxes for Country-->
+          <div *ngIf="field.type === 'checkbox'" class="checkbox-group" style="margin-top: 30px;">
+            <label>{{ field.label }}</label>
+            <div *ngFor="let option of field.options; let i = index" class="checkbox-option">
+              <mat-checkbox [formControl]="getCheckboxOptions(field.key).controls[i]">
+                {{ option }}
+              </mat-checkbox>
+            </div>
+          </div>
+          
+          <!-- Date picker for Date of Birth -->
+          <mat-form-field *ngIf="field.type === 'date'" appearance="outline" >
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput [matDatepicker]="picker" [formControlName]="field.key" [max]="today">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formGroup.get(field.key)?.hasError('required')">
+              Please select your {{ field.label.toLowerCase() }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions style="margin-left: 50%;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">
+         Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
