@@ -1,75 +1,47 @@
+Part 1: Coding Challenge (1 to 2 hours)
+Dynamic Form Builder Application
+Overview
+Create an Angular application for building and managing dynamic forms with permission
+controls. Please upload your code to GitHub with a README and share the repository
+link with us. If any requirement proves challenging to implement within the time
+constraint, document your approach and reasoning in the README.md file.
+Requirements
+1. Form Builder Interface
+o Create a drag-and-drop interface for building forms with different field
+types:
+ Text input (single-line and multi-line)
+ Dropdown select (with configurable options)
+ Checkbox groups
+ Date picker
+ Radio button groups
+o Each field should have configurable properties:
+ Field label
+ Required/optional setting
+ Help text
+ Validation rules (min/max length, pattern, etc.)
 
-# 📄 Dynamic Form Builder – Angular (Admin & User Roles)
+2. Form Management
+o List view of created form templates
+o Ability to edit existing templates
+o Preview mode to test forms
+3. Form Submission
+o Form filling interface for end-users
+o Validation based on the configured rules
+o Submission to a mock API
+o Success/error handling
+o View submitted form data
+4. Authorization
+o Implement two user roles:
+ Admin: Can create, edit, and delete form templates
+ User: Can only view and fill out forms
+o Authorization check on all relevant actions
+o Login screen with role selection
 
-This project is a **dynamic form builder and renderer** built using Angular 14. It allows **admins to mange form templates** and **users to fill and submit them**. The system supports role-based access, form preview, dynamic controls, and local persistence.
----
+Technical Requirements
+ Angular 14+ with TypeScript
 
-## 🚀 Features
-
-- ✅ **Role Based Login**
-- ✅ **Dynamic Form Rendering** (User side)
-- ✅ **Reactive Forms with Validation**
-- ✅ **Checkbox, Radio, Select, Date, Text, Textarea Support**
-- ✅ **Local Storage Persistence**
-- ✅ **Angular Material UI**
-- ✅ **Role-Based Routing (Admin/User)**
-- ✅ **Form Reset, Save & Validation Feedback**
-- ✅ **Logout Feature**
-- ✅ **NgRx State Management**
-
----
-
-## 🛠 Tech Stack
-
-- **Angular** 14+
-- **Angular Material** for UI components
-- **Reactive Forms**
-- **LocalStorage** for mock API
-- **Typescript**
-- **NgRx** for state management
-
----
-
-## 📂 Project Structure (Brief)
-
-```
-src/
-├── app/
-│   ├── form-fill/             # Form rendering and submission
-│   ├── form-list/             # List of form templates
-│   ├── services/              # FormTemplateService for CRUD
-│   ├── state/                 # NgRx Actions, Reducers, Selectors
-│   └── app-routing.module.ts # Routes with role-based access
-```
-
----
-
-## ▶️ Run Locally
-
-```bash
-# Clone the repo
-git clone https://github.com/pavan2540/Dynamic-fb-Angular-Admin-User.git
-cd Dynamic-fb-Angular-Admin-User
-
-# Install dependencies
-npm install
-
-# Start the app
-ng serve
-```
-
----
-
-## 🧰 Screenshots
-
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-
-## 🧰 Available Scripts
-
-- `ng serve` – Run the dev server
-- `ng test` – Run unit tests
-- `ng build` – Build the app for production
-
----
+ Reactive Forms for form handling
+ State management (NgRx preferred)
+ Responsive design
+ Unit tests for at least 2 key components
+ Mock API service (no backend required)
